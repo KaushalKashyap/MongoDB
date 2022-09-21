@@ -1,0 +1,27 @@
+1.- Create a database demo
+
+sol.- use demo
+
+2.- create a EMP collection
+
+sol.- db.createCollection("stu")
+
+3.- insert 8 documents containing in EMP collection containing eid, name, city, doj, dept, desi.
+
+sol.- db.EMP.insertMany([{'index':1,'rno':3,'name':'akash roushan'},{'index':2,'rno':5,'name': 'ankit kumar'},{'index':3,'rno':7,'name':'kumar ankit'},{'index':4,'rno':9,'name':'harshvardhan'}])
+
+4.- Display the documents in formatted manner.
+
+sol.- db.stu.find().pretty()
+
+5.- Show the documents containing "HR" Dept.
+
+sol.- db.stu.find({'dept': 'HR'})
+
+6.- Show the documents for "OPS" Manager.
+
+sol.- db.stu.find({'dept':'OPS','desi': 'Manager'})
+
+7.- promote all the associate as Sr.Associate
+
+sol.- db.EMP.updateOne({"desi":"star garaj"},{$set:

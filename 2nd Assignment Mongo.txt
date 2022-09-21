@@ -1,0 +1,15 @@
+1- import the emp & sal csv files and perform the below actions on the data: 
+
+sol-   mongoimport -d demo -c sal --type csv --file emp.csv --headerline --drop
+
+2- list the documents of the manager having salary more than 100000.
+
+sol- db.sal.find({"SALARY" :{$gt : 100000}});
+
+3- list the documents of employee from either IT or Admin team.
+
+sol- db.sal.find({$nor: [{"dept": "it"},{"dept": "admin"}})
+
+4- remove the documents of temp employee.
+
+sol- db.sal.deleteMany({'dept': 'temp'})

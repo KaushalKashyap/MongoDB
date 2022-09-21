@@ -1,0 +1,89 @@
+MONGO DB
+
+MONGO IS CASE SENSITIVE DATABASE QUERY LANGUAGE.
+
+1.CREATE A  DATABASE BY USING “USE”
+USE _ _ _DATABASE NAME_ _ _ _ _
+:- THIS IS SOMETHING WHEN THE DATABASE YOU’VE GIVEN IS EXIST THEN CONTROL WILL COME IN THAT PARTICULAR DATABASE, IF NOT AVAILABLE THEN, IT WILL CREATE A NEW DATABASE.
+
+2. COLLECTION . THESE ARE LIKE TABLES IN MONGO DB.
+AND THIS WILL CONTAIN THE KEY, VALUE PAIR.
+KEY IS THE COLUMN NAME AND PAIR IS ITS VALUE. FOR EXAMPLE(‘EID: 1001). EID = KEY, 1001-= PAIR.
+
+3.- LETS CREATE A DATABASE
+####################################################################################################################
+use lb23
+
+* -   db.stu.insert({“rno”: 1, “name”: “kaushal kashyap”, “age”:12})
+
+*-   db.stu.insertOne({“rno”: 1, “name”: “kaushal kashyap”, “age”:12})
+
+= insertOne will return the object id of newly inserted data.
+
+*-   db.stu.insertMany([{“rno” : 7 , “name” : “monica”}, {“rno” : 2 , “name”: “sonica”, “class” : “7th”}])
+
+= inserting more than one documents(data) at a same time. 
+
+Viola! Data inserted……
+###################################################################################################################
+commands:
+1,- show dbs  -it is basically for showing all the database inside that repository.
+
+2.- db.stu.find() -it is to retrieve and show the data.
+     db.stu.find().pretty(); it also retrieve and show widely the documents(data). Or can say (“formatted Output”).
+
+3.- db.dropdatabase()  - will delete the whole database. But before deleting first check in which database you are in by using keyword ‘ db’.
+
+4.- db.createCollection(“stu”)    - to create a collection “stu”.
+
+5.- show collections   - it will show all the collection inside that database
+
+6.- db.createCollection(“stu2”,{“capped”: true, size: 5000, max : 5}) = it follows last in first out crieteria.
+
+7- db.stu.drop()   = dropping the collection “stu”.
+#####################################################################################################################
+			Update documents
+# FOR A SINGLE DATA UPDATION USE UPDATEONE.
+* db.stu.updateOne({'EID': 1025},{$set:{'ADDRESS' : 'B302 PRAGYA APARTMENTS, DWARKA,DELHI','PHONE':9987456521}});
+
+# FOR BELOW, IT IS SAYING THAT CHECK WHRER 'DEPT' IS 'HR' THEN SET 'DESI' TO SR. ASSOCIATE. 
+# IT WILL UPDATE ALL WHERE DEPT IS HR.
+* db.salary.updateMany({$and: [{"DEPT" :"HR"},{"DESI" :"ASSOCIATE"}]},
+{$set:{"DESI" : "SR. ASSOCIATE"}});
+
+* db.salary.updateMany({$and: [{"DEPT" :"HR"},{"DESI" : "ASSOCIATE"}]},{$set:{"DESI" : "SR. ASSOCIATE"}});
+
+# BELOW WITHOUT GIVING ANY CONDITION. UPDATE THE WHOLE COLUMN "CLASS" TO 8TH.
+* db.stu2.updateMany({},{"$set" : {"class" : "8th"}});
+
+* db.stu.replaceOne({"rno" : 2},{"rno" : 3 ,"name" : "ajay kumar","age" : 16});
+
+* 
+#####################################################################################################################
+					DELETE DOCUMENTS
+
+* db.stu.deleteOne({'rno': 5}); -- it will delete only one document specified under the condition.
+* db.collection.deleteMany({'dept':'HR'}) -- it will delete all the document where dept is hr.
+
+
+
+#####################################################################################################################
+8- Conditional statement . Like Inside a emp collection I want to see all “Hr” department employee details.
+For  that:
+	db.sal.find({“dept” : “HR”})
+
+
+9- MORE THAN ONE CONDITION . THEN USE $ AND OPERATOR.
+db.sal.find({ $and: [{ “dept” : “ops” }, { “desi” : “manager”}]})
+db.sal.find({$and:  [ {“dept”: “temp”},{“desi”: “associate”}]})
+
+through this we can give as many condition as we want.
+
+10- USING “$ OR” OPERATOR FOR CONDITIONAL QUESTION.
+
+db.sal.find({$or : [{“dept” : “MIS”},{“desig” : “Associate”}]})
+
+$or means either of any one condition or all condition is true.
+
+11.- 
+ 
